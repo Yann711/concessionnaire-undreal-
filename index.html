@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>UNDREAL – Catalogue Véhicules</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b0b0b;
+    color: #fff;
+}
+
+header {
+    background: linear-gradient(90deg, #ffcc00, #ff9900);
+    padding: 30px;
+    text-align: center;
+    color: #000;
+}
+
+header h1 {
+    font-size: 60px;
+    margin: 0;
+    font-weight: 900;
+}
+
+header p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+nav {
+    background: #111;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+nav button {
+    background: #ffcc00;
+    border: none;
+    padding: 10px 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+nav button:hover {
+    background: #ffaa00;
+    transform: scale(1.05);
+}
+
+main {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.car {
+    background: #1a1a1a;
+    border: 2px solid #ffcc00;
+    padding: 15px;
+    text-align: center;
+}
+
+.car img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.car h3 {
+    margin: 10px 0 0;
+    color: #ffcc00;
+}
+
+footer {
+    background: #000;
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #ffcc00;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>UNDREAL</h1>
+    <p>Catalogue Véhicules</p>
+</header>
+
+<nav id="menu"></nav>
+<main id="catalogue"></main>
+
+<footer>
+    <p>Créateurs</p>
+    <strong>Dyck-Aprio Yann</strong><br>
+    <strong>Dick-Aprio Luchiano</strong>
+</footer>
+
+<script>
+const data = {
+"Supercars": [
+ {name:"Adder",img:"https://static.wikia.nocookie.net/gtawiki/images/3/3a/Adder-GTAV.png"},
+ {name:"Zentorno",img:"https://static.wikia.nocookie.net/gtawiki/images/6/69/Zentorno-GTAV.png"},
+ {name:"T20",img:"https://static.wikia.nocookie.net/gtawiki/images/0/02/T20-GTAV.png"},
+ {name:"Osiris",img:"https://static.wikia.nocookie.net/gtawiki/images/5/5c/Osiris-GTAV.png"},
+ {name:"Entity XF",img:"https://static.wikia.nocookie.net/gtawiki/images/5/5d/EntityXF-GTAV.png"}
+],
+
+"Sportives": [
+ {name:"Elegy RH8",img:"https://static.wikia.nocookie.net/gtawiki/images/0/0d/ElegyRH8-GTAV.png"},
+ {name:"Jester",img:"https://static.wikia.nocookie.net/gtawiki/images/4/4b/Jester-GTAV.png"},
+ {name:"Kuruma",img:"https://static.wikia.nocookie.net/gtawiki/images/8/86/Kuruma-GTAV.png"},
+ {name:"Sultan",img:"https://static.wikia.nocookie.net/gtawiki/images/2/2e/Sultan-GTAV.png"}
+],
+
+"Muscle": [
+ {name:"Dominator",img:"https://static.wikia.nocookie.net/gtawiki/images/7/7a/Dominator-GTAV.png"},
+ {name:"Gauntlet",img:"https://static.wikia.nocookie.net/gtawiki/images/0/05/Gauntlet-GTAV.png"},
+ {name:"Buffalo",img:"https://static.wikia.nocookie.net/gtawiki/images/1/1f/Buffalo-GTAV.png"}
+],
+
+"SUV": [
+ {name:"Baller",img:"https://static.wikia.nocookie.net/gtawiki/images/4/4c/Baller-GTAV.png"},
+ {name:"Cavalcade",img:"https://static.wikia.nocookie.net/gtawiki/images/b/b6/Cavalcade-GTAV.png"}
+],
+
+"Motos": [
+ {name:"Bati 801",img:"https://static.wikia.nocookie.net/gtawiki/images/d/dc/Bati801-GTAV.png"},
+ {name:"Akuma",img:"https://static.wikia.nocookie.net/gtawiki/images/6/6b/Akuma-GTAV.png"},
+ {name:"Sanchez",img:"https://static.wikia.nocookie.net/gtawiki/images/f/fb/Sanchez-GTAV.png"}
+],
+
+"Utilitaires": [
+ {name:"Benson",img:"https://static.wikia.nocookie.net/gtawiki/images/7/7b/Benson-GTAV.png"},
+ {name:"Pounder",img:"https://static.wikia.nocookie.net/gtawiki/images/4/4f/Pounder-GTAV.png"}
+]
+};
+
+const menu = document.getElementById("menu");
+const catalogue = document.getElementById("catalogue");
+
+function show(cat){
+    catalogue.innerHTML="";
+    data[cat].forEach(v=>{
+        catalogue.innerHTML+=`
+        <div class="car">
+            <img src="${v.img}">
+            <h3>${v.name}</h3>
+        </div>`;
+    });
+}
+
+Object.keys(data).forEach(cat=>{
+    const b=document.createElement("button");
+    b.textContent=cat;
+    b.onclick=()=>show(cat);
+    menu.appendChild(b);
+});
+
+show(Object.keys(data)[0]);
+</script>
+
+</body>
+</html>
